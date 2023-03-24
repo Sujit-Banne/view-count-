@@ -1,25 +1,27 @@
 import { useState, useEffect } from 'react';
 import './ImageViewer.css'
+
 function App() {
   const [viewCount, setViewCount] = useState(0);
   const [videoOpen, setVideoOpen] = useState(false);
 
   useEffect(() => {
-    // Load view count from localStorage on component mount
-    const savedViewCount = localStorage.getItem('viewCount');
-    if (savedViewCount) {
-      setViewCount(parseInt(savedViewCount));
-    } else {
-      // Set initial view count to 0 if not already set in localStorage
-      setViewCount(0);
-    }
+    fetch('https://view-count-backend.onrender.com/viewcount')
+      .then(res => res.json())
+      .then(data => {
+        setViewCount(data.count);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   function handleVideoClick() {
-    // Increment view count and save to localStorage
-    const newViewCount = viewCount + 1;
-    setViewCount(newViewCount);
-    localStorage.setItem('viewCount', newViewCount);
+    // Increment view count on the backend and update locally
+    fetch('https://view-count-backend.onrender.com/viewcount', { method: 'POST' })
+      .then(res => res.json())
+      .then(data => {
+        setViewCount(data.count);
+      })
+      .catch(err => console.log(err));
 
     // Open video player on the right side of the screen
     setVideoOpen(true);
