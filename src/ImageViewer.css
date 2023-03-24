@@ -1,0 +1,63 @@
+.App {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.video-container {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+}
+
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnail-container img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.thumbnail-container p {
+  margin: 8px 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.video-player {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 800px;
+  background-color: #000;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-player video {
+  width: 100%;
+  height: auto;
+}
+
+.video-player button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
